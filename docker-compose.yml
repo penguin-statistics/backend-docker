@@ -1,0 +1,16 @@
+version: "3.3"
+services: 
+  mongo:
+    image: "${MONGO_VERSION}"
+    volumes: 
+      - ./mongodb/data:/data/db
+      - ./mongodb/backup:/backup
+    environment: 
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+  tomcat:
+    build: ./penguin-backend
+    ports: 
+      - 8080:8080
+    depends_on: 
+      - mongo
