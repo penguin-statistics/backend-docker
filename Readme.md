@@ -5,7 +5,7 @@
 ### 1.Clone 本项目
 
 ```shell
-git clone https://github.com/bbaa-bbaa/backend-docker.git
+git clone https://github.com/penguin-statistics/backend-docker.git
 cd backend-docker
 ```
 
@@ -47,7 +47,7 @@ docker-compose exec mongo mongorestore -h localhost:27017 -d penguin_stats -u ro
 用户名密码需要与 penguin-backend/application.yml 对应
 
 ```shell
-docker-compose exec mongo mongo localhost:27017 -u root -p root --authenticationDatabase admin --eval "use penguin_stats;db.createUser({user: 'root', pwd: 'root', roles:['dbOwner']})"
+docker-compose exec mongo mongo localhost:27017/penguin_stats -u root -p root --authenticationDatabase admin --eval "db.createUser({user: 'root', pwd: 'root', roles:['dbOwner']})"
 ```
 
 ### 7.重启
