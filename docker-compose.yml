@@ -1,6 +1,7 @@
 version: "3.3"
 services: 
   mongo:
+    container_name: mongo
     image: "${MONGO_VERSION}"
     volumes: 
       - ./mongodb/data:/data/db
@@ -8,9 +9,18 @@ services:
     environment: 
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+    ports: 
+      - 27017:27017
   tomcat:
+    container_name: tomcat
     build: ./penguin-backend
     ports: 
       - 8080:8080
     depends_on: 
       - mongo
+  nginx: 
+    container_name: nginx
+    build: ./penguin-frontend
+    ports:
+      - 80:80
+      # - 443:443
