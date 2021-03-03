@@ -19,14 +19,8 @@ chmod +x /usr/local/bin/docker-compose
 ```
 
 ### 3. 下载源代码
-使用`git modules`
-```shell
-git submodule update --init --recursive
-```
-
-Or
-
-手动更改`penguin-backend/source` & `penguin-frontend/source`
+修改docker-compose.yml 指定pull branch
+`获取源代码方式将会被改变`
 
 ### 4.构建并启动容器
 
