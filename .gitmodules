@@ -1,6 +1,0 @@
-[submodule "penguin-backend/source"]
-	path = penguin-backend/source
-	url = https://github.com/penguin-statistics/backend
-[submodule "penguin-frontend/source"]
-	path = penguin-frontend/source
-	url = https://github.com/penguin-statistics/frontend-v2
