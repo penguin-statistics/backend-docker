@@ -13,14 +13,20 @@ services:
       - 27017:27017
   tomcat:
     container_name: tomcat
-    build: ./penguin-backend
+    build: 
+      context: ./penguin-backend 
+      args:
+        backend_branch: feat-recognition
     ports: 
       - 8080:8080
     depends_on: 
       - mongo
   nginx: 
     container_name: nginx
-    build: ./penguin-frontend
+    build: 
+      context: ./penguin-frontend
+      args:
+        frontend_branch: recognition-ui
     ports:
       - 80:80
       # - 443:443

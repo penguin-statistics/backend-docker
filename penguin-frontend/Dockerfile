@@ -1,13 +1,18 @@
-FROM node:14-slim as builder
+FROM node:14-alpine as builder
+RUN apk add git
+ARG frontend_branch
+ENV frontend_branch=${frontend_branch}
 ENV VUE_APP_IS_DOCKER=true
 WORKDIR /usr/src/penguin-frontend
 
-# yarn build dist folder
-ADD source/package.json /usr/src/penguin-frontend/
-ADD source/yarn.lock /usr/src/penguin-frontend/
-RUN yarn install
+# get source code
+# COPY . .
+# RUN git clone https://github.com/penguin-statistics/frontend-v2.git -b ${frontend_branch} .
+# RUN git clone https://github.com.cnpmjs.org/penguin-statistics/frontend-v2.git -b ${frontend_branch} .
+RUN git clone https://github.com.cnpmjs.org/bbaa-bbaa/frontend-v2.git -b ${frontend_branch} .
 
-COPY source /usr/src/penguin-frontend/
+# yarn build dist folder
+RUN yarn install
 RUN yarn build
 
 # nginx setting
