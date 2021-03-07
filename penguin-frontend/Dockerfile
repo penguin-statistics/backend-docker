@@ -8,8 +8,8 @@ WORKDIR /usr/src/penguin-frontend
 # get source code
 # COPY . .
 # RUN git clone https://github.com/penguin-statistics/frontend-v2.git -b ${frontend_branch} .
-# RUN git clone https://github.com.cnpmjs.org/penguin-statistics/frontend-v2.git -b ${frontend_branch} .
-RUN git clone https://github.com.cnpmjs.org/bbaa-bbaa/frontend-v2.git -b ${frontend_branch} .
+RUN git clone https://github.com.cnpmjs.org/penguin-statistics/frontend-v2.git -b ${frontend_branch} .
+#RUN git clone https://github.com.cnpmjs.org/bbaa-bbaa/frontend-v2.git -b ${frontend_branch} .
 
 # yarn build dist folder
 RUN yarn install
