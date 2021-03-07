@@ -2,7 +2,7 @@
 FROM maven:3.6.3-jdk-8-openj9 AS builder
 ARG backend_branch
 ENV backend_branch=${backend_branch}
-RUN apt -y install git
+RUN apt update && apt -y install git
 WORKDIR /usr/src/penguin-backend
 
 # get source code
