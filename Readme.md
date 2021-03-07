@@ -9,8 +9,6 @@ git clone https://github.com/penguin-statistics/backend-docker.git
 cd backend-docker
 ```
 
-
-
 ### 1.安装 docker-ce
 
 ### 2.安装 docker-compose
@@ -20,13 +18,14 @@ curl -L "https://github.com/docker/compose/releases/download/1.28.2/docker-compo
 chmod +x /usr/local/bin/docker-compose
 ```
 
-### 3.修改配置文件(可选)
-
-编辑 penguin-backend/Dockerfile 启用代理
+### 3. 下载源代码
+修改docker-compose.yml 指定pull branch
+`获取源代码方式将会被改变`
 
 ### 4.构建并启动容器
 
 ```shell
+docker-compose build
 docker-compose up -d
 ```
 
@@ -56,4 +55,8 @@ docker-compose exec mongo mongo localhost:27017/penguin_stats -u root -p root --
 docker-compose restart
 ```
 
-EXPOSE 8080
+### devOnly
+Ports exposed are 
+* 80 for web service (frontend + backend)
+* 8080 for web service (backend only)
+* 27017 for mongodb

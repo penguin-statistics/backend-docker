@@ -1,6 +1,7 @@
 version: "3.3"
 services: 
   mongo:
+    container_name: mongo
     image: "${MONGO_VERSION}"
     volumes: 
       - ./mongodb/data:/data/db
@@ -8,9 +9,26 @@ services:
     environment: 
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+    ports: 
+      - 27017:27017
   tomcat:
-    build: ./penguin-backend
+    container_name: tomcat
+    build: 
+      context: ./penguin-backend 
+      args:
+        backend_branch: feat-recognition
+    environment:
+      JAVA_OPTS: -Xms512m -Xmx1024m
     ports: 
       - 8080:8080
     depends_on: 
       - mongo
+  nginx: 
+    container_name: nginx
+    build: 
+      context: ./penguin-frontend
+      args:
+        frontend_branch: recognition-ui
+    ports:
+      - 80:80
+      # - 443:443
