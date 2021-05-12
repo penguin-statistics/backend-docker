@@ -55,8 +55,23 @@ docker-compose exec mongo mongo localhost:27017/penguin_stats -u root -p root --
 docker-compose restart
 ```
 
-### devOnly
-Ports exposed are 
+### 8. Development and Production
+`docker-compose.yml` is suitable for production use. `docker-compose.override.yml` will apply additional changes to `docker-compose.yml`.
+
+#### Development
+```shell
+docker-compose up -d  
+```
+`docker-compose.override.yml` contains ports exposed on host and mongo backup folder for importing database.
+Ports exposed on host are 
 * 80 for web service (frontend + backend)
 * 8080 for web service (backend only)
 * 27017 for mongodb
+* 6379 for redis
+
+#### Production
+
+```shell
+docker-compose -f docker-compose.yml up -d  
+```
+This does not include changes in `docker-compose.override.yml`.
